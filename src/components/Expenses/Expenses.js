@@ -5,10 +5,10 @@ import ExpensesFilter from './ExpensesFilter';
 import './Expenses.css';
 
 const Expenses = ({ expenses }) => {
-	const [expenseFilter, setExpenseFilter] = useState('');
+	const [filteredYear, setFilteredYear] = useState('');
 
 	const updateExpenseFilterHandler = value => {
-		setExpenseFilter(value);
+		setFilteredYear(value);
 	}
 
 	return (
