@@ -5,19 +5,25 @@ import ExpensesFilter from './ExpensesFilter';
 import './Expenses.css';
 
 const Expenses = ({ expenses }) => {
-	const [filteredYear, setFilteredYear] = useState('');
+	const [filteredExpenses, setFilteredExpenses] = useState(expenses);
 
-	const updateExpenseFilterHandler = value => {
-		setFilteredYear(value);
-	}
+	const updateExpenseFilterHandler = (value) => {
+		setFilteredExpenses(() =>
+			expenses.filter(
+				(expense) => expense.date.getFullYear().toString() === value
+			)
+		);
+	};
 
 	return (
-		<div className='expenses'>
-			<ExpensesFilter onUpdateExpenseFilter={updateExpenseFilterHandler} />
+		<div className="expenses">
+			<ExpensesFilter
+				onUpdateExpenseFilter={updateExpenseFilterHandler}
+			/>
 			<div>
-				{expenses.map((expense) => {
-					return <ExpenseItem key={expense.id} info={expense} />;
-				})}
+				{filteredExpenses.map((expense) => (
+					<ExpenseItem key={expense.id} info={expense} />
+				))}
 			</div>
 		</div>
 	);
